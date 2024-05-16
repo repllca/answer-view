@@ -1,0 +1,3 @@
+djangorestframework
+django
+psycopg2-binary
