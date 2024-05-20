@@ -1,4 +1,3 @@
-# answer-view
 データベースの概要
 
 question_collection
