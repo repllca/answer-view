@@ -13,4 +13,6 @@ class Choice(models.Model):
 
 
 class Kadai(models.Model):
-    choice_text = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
+

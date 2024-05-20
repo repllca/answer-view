@@ -19,7 +19,7 @@ from django.urls import path,include
 from myapp.urls import router as kadai_router
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("myapp/",include("myapp.urls")),
-    path("kadai/",include(kadai_router.urls)),
+    path('admin/', admin.site.urls),#database
+    path("myapp/",include("myapp.urls")),#
+    path("kadai/",include(kadai_router.urls)),#api
 ]
