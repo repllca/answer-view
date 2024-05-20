@@ -8,7 +8,7 @@ from .serializers import KadaiSerializer
 class KadaiAPIView(viewsets.ModelViewSet):
     queryset = Kadai.objects.all()
     a = "test"
-    serializer_class = KadaiSerializer
+    a = 1
     #ここにkadaiにアクセスしたときの処理を書く
 
     # def get(self, request):#情報が送られてこない
