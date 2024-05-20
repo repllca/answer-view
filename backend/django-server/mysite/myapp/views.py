@@ -7,7 +7,7 @@ from .serializers import KadaiSerializer
 
 class KadaiAPIView(viewsets.ModelViewSet):
     queryset = Kadai.objects.all()
-    
+    a = 1
     serializer_class = KadaiSerializer
     #ここにkadaiにアクセスしたときの処理を書く
 
