@@ -1,6 +1,5 @@
 # answer-view
 データベースの概要
-
 question_collection
     {
         title: (str),
@@ -10,11 +9,24 @@ question_collection
         question_id :(int)
     }
 
-
-users
+users_collection
     {
+        user_id: (int),
         name: (str),
         school: (str),
-        user_id: (int)
+        pass: (str),
     }
 
+
+
+front ➡　backend(post)
+    url:api/qestion
+        qestionを保存する
+
+    url:api/user(post)
+        user(json)を保存
+
+
+front ➡　backend(get)
+    url:api/qestion
+        question_collectionの中身をすべて返す
