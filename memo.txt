@@ -1,0 +1,19 @@
+データベースの概要
+
+question_collection
+    {
+        title: (str),
+        question:(str),
+        answer: (str),
+        author: (str),
+        question_id :(int)
+    }
+
+
+users
+    {
+        name: (str),
+        school: (str),
+        user_id: (int)
+    }
+

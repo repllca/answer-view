@@ -9,6 +9,7 @@ class KadaiAPIView(viewsets.ModelViewSet):
     queryset = Kadai.objects.all()
     a = "test"
     a = 1
+    serializer_class = KadaiSerializer
     #ここにkadaiにアクセスしたときの処理を書く
 
     # def get(self, request):#情報が送られてこない
