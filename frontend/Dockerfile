@@ -1,3 +1,3 @@
 FROM node:lts
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/react-app
