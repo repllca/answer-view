@@ -14,4 +14,4 @@ RUN pip install --upgrade pip\
 WORKDIR /root/django-server/mysite
 
 
-CMD python manage.py runserver 0.0.0.0:8000
+# CMD python manage.py runserver 0.0.0.0:8000
