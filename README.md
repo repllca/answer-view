@@ -28,5 +28,12 @@ front ➡　backend(post)
 
 
 front ➡　backend(get)
+
     url:api/qestion
+    
         question_collectionの中身をすべて返す
+## 実行コマンド
+　
+## フロントエンド
+
+## バックエンド
