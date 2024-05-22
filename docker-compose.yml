@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.3"
 services:
   react:
     container_name: answer-view-react-server
