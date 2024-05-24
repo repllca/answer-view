@@ -8,8 +8,12 @@ import { Kadai } from "../types"
 const KadaiProps:  React.FC<Kadai> = (props) => {
     return(
       <div>
-        <p>名前:{props.kadai}</p>
-        <p></p>
+        <h1>props.title</h1>
+        <p>props.question</p>
+        <p>props.answer</p>
+        <p>props.author</p>
+        <p>props.question_id</p>
+
       </div>
     )
 }

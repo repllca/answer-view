@@ -1,8 +1,6 @@
 export const getKadaiList = async () =>{
-    const res = await fetch('127.0.0.1:8000/myapp/', {
+    const res = await fetch('http://127.0.0.1:8000/myapp/test/', {
         method: 'GET',
-        
       });
-      console.log(res)
       return await res.json();
 };
