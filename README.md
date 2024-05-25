@@ -1,6 +1,8 @@
 # answer-view
-データベースの概要
-question_collection
+## データベースの概要  
+
+question_collection 
+
     {
         title: (str),
         question:(str),
@@ -9,15 +11,17 @@ question_collection
         question_id :(int)
     }
 
-users_collection
+
+users_collection 
+
     {
         user_id: (int),
         name: (str),
         school: (str),
-        pass: (str),
+        password: (str),
     }
 
-
+## apiのやり取り
 
 front ➡　backend(post)
     url:api/qestion
