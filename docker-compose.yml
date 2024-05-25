@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.3"
 services:
   react:
     container_name: answer-view-react-server
@@ -11,7 +11,7 @@ services:
       target: /usr/src/app
     # - ./frontend/app:/usr/src/app
     #"react-app"の部分がプロジェクト名になる
-    # command: sh -c "cd react-app && yarn start" 
+    # command: sh -c "cd react-app && yarn start"
     ports:
       - 3000:3000
     stdin_open: true #標準入力をコンテナと紐付ける

@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  const count = 10
-  for (let i = 0; i < count; i++) {
-          
-  }
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomeView from './pages/HomeView';
+import {ChakraProvider} from '@chakra-ui/react';
+import KadaiBordView from './pages/KadaiBoardView';
+const App: React.FC = () => {
   return (
-    <div className="App">
-      
-      <header className="App-header">
-        
-        <LikeButton/>
-      </header>
+    <div>
+      <Router>
+        <div>
+          <Routes>
+            <Route path="/Home" element={<HomeView />} />
+            <Route path="/kadai_api" element={<KadaiBordView />} />
+          </Routes>
+        </div>
+      </Router>
     </div>
   );
-}
-
-function LikeButton(){
-  const count = 999;
-  return <span className='likeButton'>♡{count}</span>
-}
+};
 
 export default App;
