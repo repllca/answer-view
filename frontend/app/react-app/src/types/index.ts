@@ -5,7 +5,7 @@ export interface Kadai {
     question:string;
     answer:string;
     author:string;
-    question_id:number
+    question_id?:number
 }
 
 export interface Post {
