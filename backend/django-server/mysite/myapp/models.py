@@ -15,3 +15,4 @@ from django.db import models
 class Kadai(models.Model):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
+    owner = models.ForeignKey("auth.User", related_name="Kadai", on_delete=models.CASCADE)

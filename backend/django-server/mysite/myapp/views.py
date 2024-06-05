@@ -1,31 +1,22 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from rest_framework import viewsets,status
+from rest_framework import viewsets,status, permissions
 from rest_framework.response import Response
 from .models import Kadai
 from .serializers import KadaiSerializer
+from .permissions import IsOwnerOrReadOnly
 
 class KadaiAPIView(viewsets.ModelViewSet):
+    """
+    認証されたuserなら書き込みと、読み込みを許可する、それ以外なら読み込みを許可
+    """
     queryset = Kadai.objects.all()
-    a = "test"
-    a = 1
     serializer_class = KadaiSerializer
-    #ここにkadaiにアクセスしたときの処理を書く
-
-    # def get(self, request):#情報が送られてこない
-    #     kadai = Kadai.objects.all()
-    #     serializer = KadaiSerializer(kadai, many=True)
-    #     print("aa")
-    #     return Response(serializer.data)    
-
-    # def post(self, request):#情報が送られてくる
-    #     serializer = KadaiSerializer(data=request.data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         print(serializer.data)
-    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                        IsOwnerOrReadOnly]
+    
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 def index(request):
     print("aa")
