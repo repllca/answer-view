@@ -12,6 +12,14 @@ class KadaiSerializer(serializers.ModelSerializer):
         model = Kadai
         fields = '__all__'
 
+class KadaiListSerializer(serializers.ModelSerializer):
+    """
+    kadailistのapi用シリアライザ
+    """
+    class Meta:
+        model = Kadai
+        fields = ["title"]
+
 class UserSerializer(serializers.ModelSerializer):
     kadai = serializers.PrimaryKeyRelatedField(many=True,queryset=Kadai.objects.all())
 
