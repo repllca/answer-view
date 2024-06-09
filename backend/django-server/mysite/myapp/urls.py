@@ -1,9 +1,10 @@
 from django.urls import path,include
-from rest_framework import routers
 from . import views
+from rest_framework.routers import DefaultRouter
 
-router = routers.DefaultRouter()
-router.register(r'kadai', views.KadaiAPIView)
+
 urlpatterns = [
-    path("",include(router.urls)),
+    path("kadai/",views.ThreadListAPIView.as_view(),name="List"),
+    path("kadai/<int:pk>/comments/",views.KadaiDetailAPIView.as_view(),name="Detail"),
 ]
+

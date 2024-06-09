@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Kadai
+from .models import Kadai, Thread
 from django.contrib.auth.models import User
 
 class KadaiSerializer(serializers.ModelSerializer):
@@ -10,12 +10,20 @@ class KadaiSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source="owner.username")
     class Meta:
         model = Kadai
-        fields = '__all__'
+        fields = ["answer","description","created_at","owner"]
 
-class UserSerializer(serializers.ModelSerializer):
-    kadai = serializers.PrimaryKeyRelatedField(many=True,queryset=Kadai.objects.all())
-
+class ThreadListSerializer(serializers.ModelSerializer):
+    """
+    Threadlistのapi用シリアライザ
+    """
     class Meta:
-        model = User
-        fields = ('username', 'email', 'password')
+        model = Thread
+        fields = ["title"]
+
+# class UserSerializer(serializers.ModelSerializer):
+#     kadai = serializers.PrimaryKeyRelatedField(many=True,queryset=Kadai.objects.all())
+
+#     class Meta:
+#         model = User
+#         fields = ('username', 'email', 'password')
     
