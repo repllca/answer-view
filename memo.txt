@@ -17,3 +17,8 @@ users
         user_id: (int)
     }
 
+urlの概要
+admin/ 管理画面にアクセス
+signup/ サインアップにアクセス
+myapp/kadai/ 課題一覧にアクセス
+myapp/kadai/<int>/ 特定の課題にアクセス
