@@ -13,6 +13,13 @@ export interface Post {
 }
 
 
+export interface Test {
+    id: number;
+    owner: string;
+    title: string;
+    description: string;
+}
+
 
 // export interface HomeContentEntity {
 //     id: string,

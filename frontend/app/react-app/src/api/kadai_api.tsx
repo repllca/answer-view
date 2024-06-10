@@ -6,6 +6,14 @@ export const getKadaiList = async () =>{
       });
       return await res.json();
 };
+export const getTestList = async () =>{
+    const res = await fetch('http://127.0.0.1:8000/myapp/kadai/', {
+        method: 'GET',
+      });
+      return await res.json();
+};
+
+
 
 export const postKadai = async(data:Kadai) => {
   try{
