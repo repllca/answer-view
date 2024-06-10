@@ -14,10 +14,10 @@ export interface Post {
 
 
 export interface Test {
-    id: number;
-    owner: string;
-    title: string;
-    description: string;
+    id?: number;
+    owner?: string;
+    title?: string;
+    description?: string;
 }
 
 
