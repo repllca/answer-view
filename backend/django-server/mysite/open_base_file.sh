@@ -1,1 +1,0 @@
-code myapp/urls.py myapp/views.py myapp/serializers.py myapp/models.py

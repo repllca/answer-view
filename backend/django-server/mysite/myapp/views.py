@@ -4,22 +4,6 @@ from .models import Kadai, Thread
 from .serializers import KadaiSerializer, ThreadListSerializer
 from .permissions import IsOwnerOrReadOnly
 
-"""
-ハイパーリンクの作成
-"""
-@api_view(["GET"])
-def api_root(request, format=None):
-    return Response({
-        "kadai-list" : reverse("kadai-list", request=request, format=format),
-    })
-
-class KadaiThreadHighlight(generics.GenericAPIView):
-    queryset = Thread.objects.all()
-    serializer_class = ThreadListSerializer
-
-    def get(self, request, *args, **kwargs):
-        thread = self.get_object()
-        return Response(thread.highlighted)
 
 class KadaiThreadListAPIView(generics.ListCreateAPIView):
     """
@@ -37,7 +21,7 @@ class KadaiThreadDetailAPIView(generics.ListCreateAPIView):
     認証されたuserなら書き込みと、読み込みを許可する、それ以外なら読み込みを許可
     課題:putを使用
     """
-    queryset = Kadai.objects.all()
+    queryset = Kadai.objects.all().order_by("-created_at")
     serializer_class = KadaiSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 

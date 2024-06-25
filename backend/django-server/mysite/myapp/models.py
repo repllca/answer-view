@@ -13,6 +13,6 @@ class Kadai(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     thread = models.ForeignKey(Thread,related_name="thrade",on_delete=models.CASCADE)
     owner = models.ForeignKey("auth.User", on_delete=models.CASCADE)
-
+    
     def __str__(self) -> str:
         return f"owner: {self.owner}, answer: {self.answer}, description:{self.description}"
