@@ -10,6 +10,11 @@ from allauth.account.views import ConfirmEmailView
 from django.contrib.auth import login
 from django.shortcuts import redirect
 
+# class CustomConfirmEmailView(ConfirmEmailView):
+#     serializers_class = CustomRegisterSerializer
+#     template_name = "account/email_confirm.html"
+#     success_url = "dj-rest-auth/login/"
+
 class CustomConfirmEmailView(ConfirmEmailView):
     def post(self, *args, **kwargs):
         self.object = confirmation = self.get_object()
