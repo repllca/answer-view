@@ -5,6 +5,18 @@ from .serializers import KadaiSerializer, ThreadListSerializer
 from .permissions import IsOwnerOrReadOnly
 
 
+#test email
+from allauth.account.views import ConfirmEmailView
+from django.contrib.auth import login
+from django.shortcuts import redirect
+
+class CustomConfirmEmailView(ConfirmEmailView):
+    def post(self, *args, **kwargs):
+        self.object = confirmation = self.get_object()
+        confirmation.confirm(self.request)
+        login(self.request, confirmation.email_address.user)
+        return redirect('/')  # ここにリダイレクト先のURLを指定
+
 class KadaiThreadListAPIView(generics.ListCreateAPIView):
     """
     保存されているリストを表示、新しいオブジェクトの作成

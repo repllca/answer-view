@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>メールアドレスの確認</h1>
+
+{% if confirmation %}
+
+<p>確認のため、以下のボタンをクリックしてください：</p>
+
+<form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+{% csrf_token %}
+<button type="submit">確認する</button>
+</form>
+
+{% else %}
+
+<p>無効な確認リンクです。</p>
+
+{% endif %}
+
+{% endblock %}
