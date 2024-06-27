@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-#ooj5-@&b_w=j=7ps=x8s^cu42092a%*$uysp2+o@s35jbd3@s
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+# 公開を許可するドメインを指定する
 ALLOWED_HOSTS = []
 
 
@@ -41,7 +41,6 @@ INSTALLED_APPS = [
 
     # my applications
     "myapp.apps.MyappConfig",
-    # "signup",
 ]
 
 SITE_ID = 1
@@ -139,16 +138,19 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # メールで認証確認をする時に使うバックエンドの指定
+# 本番ではsmtp,テスト環境ではconsoleを使用
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST_UESR = "test_email@test_email.com"
+# 取得したメールアドレス
+EMAIL_HOST_USER = "test_email@test_email.com"
+# 文章を暗号化
+EMAIL_USE_TLS = True
 #電子メールアドレスを確認するまでログインできない 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-#登録時に必ず電子メールを提供
+#登録時に必ず電子メールを要求する
 ACCOUNT_EMAIL_REQUIRED = True
 
-DEBUG = True
 #ページネーション
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 5
 }
