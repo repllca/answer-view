@@ -32,3 +32,7 @@ dj-rest-auth/registration/verify-email/      メールアドレス確認用の�
 dj-rest-auth/registration/resend-email/      確認メールの再送信用のエンドポイント
 myapp/kadai/                                 課題一覧にアクセス
 myapp/kadai/<int>/comments/                  特定の課題にアクセス
+
+
+frontのurlの概要
+/Kadai_api/　課題の一覧、課題投稿の画面を表示する
