@@ -2,3 +2,6 @@ djangorestframework
 django
 psycopg2-binary
 django-cors-headers
+requests
+dj_rest_auth
+django-allauth
