@@ -142,6 +142,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.CustomUser'
 REST_AUTH = {
     'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
+    "LOGIN_SERIALIZER" : "accounts.serializers.CustomLoginSerializer",
 }
 
 # メールで認証確認をする時に使うバックエンドの指定

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from dj_rest_auth.registration.serializers import RegisterSerializer
-from .models import CustomUser
+from dj_rest_auth.serializers import LoginSerializer
 from allauth.account.adapter import get_adapter
 
 class CustomRegisterSerializer(RegisterSerializer):
@@ -18,3 +18,6 @@ class CustomRegisterSerializer(RegisterSerializer):
         user.school_name = self.cleaned_data.get('school_name')
         adapter.save_user(request, user, self)
         return user
+
+class CustomLoginSerializer(LoginSerializer):
+    email = None
