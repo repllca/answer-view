@@ -1,43 +1,37 @@
 import { FC, useState, useEffect } from 'react';
-import axis from 'axios';
+import axios from 'axios';
 import requests from './Requests';
 import { Test } from '../../types';
+
 const Sample: FC = () => {
-  const [info, setInfo] = useState([]);
-  const datad: Test[] = [];
+  const [info, setInfo] = useState<Test[]>([]);
 
   useEffect(() => {
-    const getSampleData = () => {
-      axis
-        .get(requests.fetchSampleData)  // GETメソッドを呼び出す
-        .then((res) => {  // レスポンスを受け取ったらthenを実行する
+    const getSampleData = async () => {
+      try {
+        const res = await axios.get(requests.fetchSampleData);
+        const fetchedData: Test[] = res.data.map((resData: Test) => ({
+          id: resData.id,
+          // 必要に応じて他のフィールドをアンコメントして追加
+          // userId: resData["user_id"],
+          // userName: resData["user_name"],
+          // clubCode: resData["club_code"],
+          // clubName: resData["club_name"],
+        }));
+        setInfo(fetchedData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-          // GETで取得したデータをforEachでループしてStateにセットする
-          res.data.forEach((resData) => {
-            const data: Test = {
-                id: resData.id
-            //   userId: resData["user_id"],
-            //   userName: resData["user_name"],
-            //   clubCode: resData["club_code"],
-            //   clubName: resData["club_name"],
-            };
-            datas.push(data);
-          });
-          setInfo(datas);
-        })
-        .catch((error) => {  // エラーコードが返ってきた場合
-          console.log(error);  // エラーコードを表示
-        });
-      };
-
-    getSampleData();  // 関数を実行する
+    getSampleData();
   }, []);
 
   return (
     <>
-      // ここにTSX、もしくはJSXを記述する
+      {/* ここにTSX/JSXを記述します */}
     </>
-  )
+  );
 };
 
 export default Sample;

@@ -11,7 +11,18 @@ export interface Kadai {
 export interface Post {
     "kadai": string;
 }
-
+export interface Login{
+    username:string;
+    password:string;
+    email?:string;
+}
+export interface SignIn {
+    "username": string;
+    "password1":string;
+    "password2":string;
+    "email":string;
+    "school":string;
+}
 
 export interface Test {
     id?: number;
