@@ -4,8 +4,6 @@ from .models import Kadai, Thread
 from .serializers import KadaiSerializer, ThreadListSerializer
 from .permissions import IsOwnerOrReadOnly
 
-
-
 class KadaiThreadListAPIView(generics.ListCreateAPIView):
     """
     保存されているリストを表示、新しいオブジェクトの作成
