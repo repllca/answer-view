@@ -1,6 +1,8 @@
 
 import React, { useState } from "react";
 import { postRegistar } from "../api/kadai_api";
+import { Input ,Button} from '@chakra-ui/react'
+import { Stack, HStack, VStack } from '@chakra-ui/react'
 import { Registar } from "../types";
 const RegistarForm : React.FC<Registar> = (props) => {
   const [formData, setFormData] = useState<Registar>({
@@ -30,12 +32,14 @@ const RegistarForm : React.FC<Registar> = (props) => {
     <div>
 
         <form onSubmit={handleSubmit}>
-            <input type="text" name="username" value={formData.username} onChange={handleChange} />
-            <input type="text" name="password1" value={formData.password1} onChange={handleChange} />
-            <input type="text" name="password2" value={formData.password2} onChange={handleChange} />
-            <input type="text" name="email" value={formData.email} onChange={handleChange} />
-            <input type="text" name="school" value={formData.school} onChange={handleChange} />
-            <button type="submit">Submit</button>
+            <Stack spacing={19}>
+            <Input placeholder='ユーザーネーム' variant='Outline'type="text" name="username" value={formData.username} onChange={handleChange} />
+            <Input placeholder='設定したいパスワードを入力してください' variant='Outline'type="text" name="password1" value={formData.password1} onChange={handleChange} />
+            <Input placeholder='確認のためもう一度パスワードを入力してください' variant='Outline'type="text" name="password2" value={formData.password2} onChange={handleChange} />
+            <Input placeholder='メールアドレス' variant='Outline'type="text" name="email" value={formData.email} onChange={handleChange} />
+            <Input placeholder='所属している学校名' variant='Outline'type="text" name="school" value={formData.school} onChange={handleChange} />
+            <Button type="submit">登録</Button>
+  </Stack>
         </form>
     </div>
   );

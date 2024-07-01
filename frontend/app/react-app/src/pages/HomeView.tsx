@@ -1,4 +1,6 @@
 import React from 'react';
+import { Box } from '@chakra-ui/react';
+import { Button, ButtonGroup } from '@chakra-ui/react'
 
 const HomeView: React.FC = () => {
   return (
@@ -8,6 +10,9 @@ const HomeView: React.FC = () => {
       <ul>
         <li>あれができます</li>
         <li>これができません</li>
+        <Box backgroundColor = "orange">this is the Box</Box>
+        <Button colorScheme='blue'>ボタン</Button>
+        <Button bgColor="red.500">ボタン</Button>
       </ul>
     </div>
   );
