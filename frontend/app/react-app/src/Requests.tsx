@@ -1,5 +1,6 @@
 const requests = {
   login_endpoint: 'http://127.0.0.1:8000/dj-rest-auth/login/',  // GETメソッド
+  registar_endpoint : "http://127.0.0.1:8000/dj-rest-auth/registration/ ",
   logout_endpoint: 'http://000.0.0.0:0000/SampleData',  // POSTメソッド
   UpdateSampleData: 'http://000.0.0.0:0000/SampleData',  // PUTメソッド
   DeleteSampleData: 'http://000.0.0.0:0000/SampleData',  // DELETEメソッド

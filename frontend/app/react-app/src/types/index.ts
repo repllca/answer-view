@@ -16,6 +16,14 @@ export interface Login{
     password:string;
     email?:string;
 }
+
+export interface Registar {
+    username : string;
+    password1 : string;
+    password2 : string;
+    email : string;
+    school : string; 
+}
 export interface SignIn {
     "username": string;
     "password1":string;
