@@ -143,6 +143,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 REST_AUTH = {
     'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
     "LOGIN_SERIALIZER" : "accounts.serializers.CustomLoginSerializer",
+    # "USE_JWT" : True,
 }
 
 # メールで認証確認をする時に使うバックエンドの指定
@@ -156,6 +157,7 @@ EMAIL_USE_TLS = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 #登録時に必ず電子メールを要求する
 ACCOUNT_EMAIL_REQUIRED = True
+
 
 #ページネーション
 REST_FRAMEWORK = {
