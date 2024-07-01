@@ -9,7 +9,7 @@ const RegistrationView: React.FC = () => {
           password1 =""
           password2 =""
           email =""
-          school =""
+          school_name =""
         />
     </div>
   );

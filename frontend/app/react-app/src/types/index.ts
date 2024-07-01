@@ -22,7 +22,7 @@ export interface Registar {
     password1 : string;
     password2 : string;
     email : string;
-    school : string; 
+    school_name : string; 
 }
 export interface SignIn {
     "username": string;

@@ -10,7 +10,7 @@ const RegistarForm : React.FC<Registar> = (props) => {
     password1 : "",
     password2 : "",
     email : "",
-    school : ""
+    school_name : ""
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +37,7 @@ const RegistarForm : React.FC<Registar> = (props) => {
             <Input placeholder='設定したいパスワードを入力してください' variant='Outline'type="text" name="password1" value={formData.password1} onChange={handleChange} />
             <Input placeholder='確認のためもう一度パスワードを入力してください' variant='Outline'type="text" name="password2" value={formData.password2} onChange={handleChange} />
             <Input placeholder='メールアドレス' variant='Outline'type="text" name="email" value={formData.email} onChange={handleChange} />
-            <Input placeholder='所属している学校名' variant='Outline'type="text" name="school" value={formData.school} onChange={handleChange} />
+            <Input placeholder='所属している学校名' variant='Outline'type="text" name="school_name" value={formData.school_name} onChange={handleChange} />
             <Button type="submit">登録</Button>
   </Stack>
         </form>
