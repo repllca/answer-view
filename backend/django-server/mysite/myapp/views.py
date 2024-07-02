@@ -1,4 +1,5 @@
-from rest_framework import viewsets, generics,status, permissions, serializers
+from rest_framework import viewsets, generics, status, permissions, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Kadai
 from .serializers import KadaiSerializer, TitleListSerializer
 from .permissions import IsOwnerOrReadOnly
@@ -11,6 +12,8 @@ class TitleListAPIView(generics.ListAPIView):
     """
     queryset = Kadai.objects.all().order_by("-date")
     serializer_class = TitleListSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["title", "owner", "date"]
 
 class KadaiCreateAPIView(viewsets.ModelViewSet):
     """
