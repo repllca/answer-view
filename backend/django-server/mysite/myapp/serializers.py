@@ -6,9 +6,10 @@ class TitleListSerializer(serializers.ModelSerializer):
     """
     title一覧のapiシリアライザ
     """
+    owner = serializers.ReadOnlyField(source="owner.username")
     class Meta:
         model = Kadai
-        fields = ["title", "owner", "created_at", "id"]
+        fields = ["title", "owner", "date", "id"]
 class KadaiSerializer(serializers.ModelSerializer):
     """
     kadaimodelのapi用シリアライザ
@@ -17,7 +18,7 @@ class KadaiSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source="owner.username")
     class Meta:
         model = Kadai
-        fields = ["title", "answer","description","created_at","owner"]
+        fields = ["title", "answer","description","date","owner"]
 
 
 # class UserSerializer(serializers.ModelSerializer):
