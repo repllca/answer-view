@@ -2,10 +2,11 @@ import internal from "stream";
 
 export interface Kadai {
     title:string;
-    question:string;
     answer:string;
-    author:string;
-    question_id?:number
+    owner?:string;
+    description:string;
+    date:string;
+
 }
 
 export interface Post {

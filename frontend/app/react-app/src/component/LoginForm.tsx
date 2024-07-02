@@ -66,7 +66,7 @@ const LoginForm: React.FC<Login> = (props) => {
               marginTop='4'
               color='white'
               as = "a"
-              href = "home"
+              href = "kadai_api"
               bg='teal.400'
               type='submit'
               paddingX='auto'
