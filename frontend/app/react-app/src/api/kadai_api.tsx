@@ -19,10 +19,19 @@ export const getTestList = async () =>{
 
 export const postKadai = async(data:Kadai) => {
   try{
-    const response = await fetch(requests.kadai_endpoint,{
+    console.log(requests.kadai_endpoint)
+    const userJson = localStorage.getItem("user");
+        if (!userJson) {
+            throw new Error("User not found in localStorage");
+        }
+    const user=JSON.parse(userJson);
+    console.log(requests.kadai_endpoint)
+    const url = requests.kadai_endpoint + user.pk;
+    const response = await fetch(url,{
       method:"POST",
       headers:{
-        "Content-Type":"application/json"
+        "Content-Type":"application/json",
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
       },
       body:JSON.stringify(data)
     });
@@ -56,7 +65,19 @@ export const postLogin = async(data:Login) =>{
     if (!response.ok){
       throw new Error("network response not ok")
     }
-    return await response.json();
+    const responseData = await response.json();
+    console.log(responseData
+    )
+    console.log(responseData.user)
+    
+    if (responseData.key) {
+            localStorage.setItem('access_token', responseData.key);
+            localStorage.setItem('user', JSON.stringify(responseData.user));
+        }
+
+
+    return responseData;
+
   }catch (error){
     console.error("ログイン情報が違うんじゃない？？",error)
   }
