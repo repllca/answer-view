@@ -1,9 +1,13 @@
 from django.urls import path,include
-from . import views
+from .views import TitleListAPIView, KadaiCreateAPIView, KadaiDetailAPIView
 from rest_framework.routers import DefaultRouter
 
 
+router = DefaultRouter()
+router.register(r"kadai",KadaiCreateAPIView)
+
 urlpatterns = [
-    path("kadai/",views.KadaiThreadListAPIView.as_view(),name="List"),
-    path("kadai/<int:pk>/comments/",views.KadaiThreadDetailAPIView.as_view(),name="Detail"),
+    path("kadai/list/",TitleListAPIView.as_view(),name="Kadai-List"),
+    path("kadai/<int:pk>/detail/",KadaiDetailAPIView.as_view(),name="Kadai-Detail"),
+    path("",include(router.urls)),
 ]
