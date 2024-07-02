@@ -19,7 +19,7 @@ export const getTestList = async () =>{
 
 export const postKadai = async(data:Kadai) => {
   try{
-    const response = await fetch("'http://127.0.0.1:8000/myapp/test/",{
+    const response = await fetch(requests.kadai_endpoint,{
       method:"POST",
       headers:{
         "Content-Type":"application/json"

@@ -114,7 +114,7 @@ const KadaiBordView = () => {
             </TabPanel> */}
             <TabPanel>
 
-            {testlist.map((test ,index) => (  
+            {/* {testlist.map((test ,index) => (  
             
                 <Card maxW='sm'>
                 <CardBody>
@@ -149,7 +149,15 @@ const KadaiBordView = () => {
                     </ButtonGroup>
                 </CardFooter>
                 </Card>
-            ))}
+            ))} */}
+            <KadaiForm
+            title=''
+            description=''
+            answer=''
+            owner=''
+            date=''
+            
+            />
             <p>two!</p>
             </TabPanel>
         </TabPanels>
