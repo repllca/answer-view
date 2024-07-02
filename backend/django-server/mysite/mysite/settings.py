@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth.registration',
 
-    "django_filters",
-
     # my applications
     "myapp.apps.MyappConfig",
     "accounts",
