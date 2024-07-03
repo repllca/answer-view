@@ -1,4 +1,5 @@
 import internal from "stream";
+import { ListFormat } from "typescript";
 
 export interface Kadai {
     title:string;
@@ -16,6 +17,12 @@ export interface Login{
     username:string;
     password:string;
     email?:string;
+}
+export interface Kadailist{
+    count : number;
+    next?:number;
+    previous? : number;
+    results:string[];
 }
 
 export interface Registar {

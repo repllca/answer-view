@@ -3,13 +3,14 @@ import { getKadaiList, getTestList } from '../api/kadai_api';
 import { Kadai } from '../types';
 import KadaiProps from '../component/KadaiProps';
 import KadaiForm from '../component/KadaiForm';
+import { Kadailist } from '../types';
 import { Test } from '../types';
 import { ScaleFade,Button,Box} from '@chakra-ui/react'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import { Card, CardHeader, CardBody, CardFooter,Image,Stack,Heading,Text,Divider,ButtonGroup} from '@chakra-ui/react'
 const KadaiBordView = () => {
-    const [kadailist, setKadai] = useState<Kadai[]>([]);    
-    const [testlist, setTest] = useState<Test[]>([]);    
+    const [kadailists, setKadais] = useState<Kadai[]>([]);    
+    const [kadailist, setKadai] = useState<Kadailist[]>([]);    
     const [isOpen, setIsOpen] = useState(false);
     const onToggle = () => {
         setIsOpen(!isOpen);
@@ -22,8 +23,8 @@ const KadaiBordView = () => {
     // }, []);
     useEffect(() => {
         getTestList()
-            .then((values: Test[]) => {
-                setTest(values);
+            .then((values: Kadailist[]) => {
+                setKadai(values);
             })
     }, []);
 
@@ -113,8 +114,8 @@ const KadaiBordView = () => {
             <p>two!</p>
             </TabPanel> */}
             <TabPanel>
-
-            {/* {testlist.map((test ,index) => (  
+                
+            {/* {kadailist.map((kadai ,index) => (  
             
                 <Card maxW='sm'>
                 <CardBody>
@@ -128,9 +129,7 @@ const KadaiBordView = () => {
                     <Text>
                     
                         key={index}
-                        owner = {test.owner}
-                        title = {test.title}
-                        description = {test.description}
+                        results = {kadai.results}
                     </Text>
                     <Text color='blue.600' fontSize='2xl'>
                         $450

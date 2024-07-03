@@ -2,7 +2,8 @@ const requests = {
   login_endpoint: 'http://127.0.0.1:8000/dj/login/',  // GETメソッド
   registar_endpoint : "http://127.0.0.1:8000/dj/registration/ ",
   kadai_endpoint: 'http://127.0.0.1:8000/myapp/kadai/',  // POSTメソッド
-  kadai_delail_3:"http://127.0.0.1.:8000/myapp/kadai/3/detail/",
+  kadai_delail_3:"http://127.0.0.1:8000/myapp/kadai/3/detail/",
+  kadailist_get_endpoint: "http://127.0.0.1:8000/myapp/kadai/list/",
   UpdateSampleData: 'http://000.0.0.0:0000/SampleData',  // PUTメソッド
   DeleteSampleData: 'http://000.0.0.0:0000/SampleData',  // DELETEメソッド
 };

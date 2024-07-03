@@ -6,8 +6,7 @@ export const getKadaiList = async () =>{
     const res = await fetch('http://localhost:8000/myapp/kadai/list/', {
         method: 'GET',
         headers:{
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+          'Content-Type': 'application/json'
         }
       });
       return await res.json();
@@ -16,8 +15,7 @@ export const getTestList = async () =>{
     const res = await fetch('http://localhost:8000/myapp/kadai/list/', {
         method: 'GET',
         headers:{
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+          'Content-Type': 'application/json'
         }
       });
       return await res.json();
