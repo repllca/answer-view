@@ -22,7 +22,14 @@ export interface Kadailist{
     count : number;
     next?:number;
     previous? : number;
-    results:string[];
+    results:nitani[];
+}
+
+export interface nitani{
+    owner:string;
+    title:string;
+    date:string;
+    id:number;
 }
 
 export interface Registar {
