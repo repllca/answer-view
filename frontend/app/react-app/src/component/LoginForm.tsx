@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Kadai } from "../types";
 import { Login } from "../types";
 import { postLogin} from "../api/kadai_api";
@@ -14,6 +15,8 @@ import {
   VStack,
 } from '@chakra-ui/react'
 const LoginForm: React.FC<Login> = (props) => {
+  
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<Login>({
     "username": "",
     "password":""
@@ -25,10 +28,17 @@ const LoginForm: React.FC<Login> = (props) => {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+
     e.preventDefault();
     try {
-      await postLogin(formData);
+      const responseData =  await postLogin(formData);
       // 成功した場合の処理
+      if(responseData && responseData.access){
+
+        navigate("/home")
+      }else{
+        console.log("ページ遷移はできてないよ")
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
       // エラー処理
