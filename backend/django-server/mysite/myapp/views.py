@@ -17,7 +17,7 @@ class TitleListAPIView(generics.ListAPIView):
 class KadaiCreateAPIView(generics.CreateAPIView):
     """
     動作:kadaiの作成を行う
-    permission:ログインユーザーだけ作成可能
+    permission:ログインユーザー
     """
     queryset = Kadai.objects.all().order_by("-date")
     serializer_class = KadaiSerializer
@@ -29,7 +29,7 @@ class KadaiCreateAPIView(generics.CreateAPIView):
 class KadaiDetailAPIView(generics.RetrieveAPIView):
     """
     動作:titleの詳細表示を行う
-    permission:ログインユーザだけ,編集が可能
+    permission:ログインユーザ
     """
     queryset = Kadai.objects.all().order_by("-date")
     serializer_class = KadaiSerializer
