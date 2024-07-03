@@ -1,2 +1,3 @@
-./backend/mysite/myapp/migrations
-./backend/mysite/accounts/migrations
+/backend/django-sever/mysite/myapp/migrations/
+./backend/django-server/mysite/accounts/migrations
+backend/django-server/mysite
