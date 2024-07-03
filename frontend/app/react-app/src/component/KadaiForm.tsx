@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Kadai } from "../types";
 import { postKadai } from "../api/kadai_api";
 
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+import { Card, CardHeader, CardBody, CardFooter,Image,Stack,Text,Divider,ButtonGroup} from '@chakra-ui/react'
 import {
   Button,
   Flex,
