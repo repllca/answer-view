@@ -1,4 +1,5 @@
 from rest_framework import viewsets, generics, status, permissions, filters
+from rest_framework.exceptions import NotAuthenticated
 from .models import Kadai
 from .serializers import KadaiSerializer, TitleListSerializer
 from .permissions import IsOwnerOrReadOnly
@@ -33,3 +34,26 @@ class KadaiDetailAPIView(generics.RetrieveAPIView):
     queryset = Kadai.objects.all().order_by("-date")
     serializer_class = KadaiSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+class UserKadaiListAPIView(generics.ListAPIView):
+    """
+    動作:request.userが作成したkadai一覧を表示
+    permission:ログインユーザかつrequest.userが作成したkadaiだけ
+    """
+    serializer_class = TitleListSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_anonymous:
+            raise NotAuthenticated("ユーザーが認証されていません。")
+        return Kadai.objects.filter(owner=user)
+
+class UserKadaiEditAPIView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    動作:request.userが作成したkadaiの編集(retrieve,update,destroy)
+    permission:ログインユーザかつkadaiを作成したrequest.userだけ
+    """
+    queryset = Kadai.objects.all()
+    serializer_class = KadaiSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]

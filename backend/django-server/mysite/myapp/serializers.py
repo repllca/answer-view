@@ -20,11 +20,3 @@ class KadaiSerializer(serializers.ModelSerializer):
         model = Kadai
         fields = ["title", "answer","description","date","owner"]
 
-
-# class UserSerializer(serializers.ModelSerializer):
-#     kadai = serializers.PrimaryKeyRelatedField(many=True,queryset=Kadai.objects.all())
-
-#     class Meta:
-#         model = User
-#         fields = ('username', 'email', 'password')
-    
