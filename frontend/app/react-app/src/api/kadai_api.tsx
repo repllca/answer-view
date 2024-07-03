@@ -3,14 +3,22 @@ import { Login } from "../types";
 import { Registar } from "../types";
 import requests from "../Requests";
 export const getKadaiList = async () =>{
-    const res = await fetch('http://127.0.0.1:8000/myapp/test/', {
+    const res = await fetch('http://localhost:8000/myapp/kadai/list/', {
         method: 'GET',
+        headers:{
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+        }
       });
       return await res.json();
 };
 export const getTestList = async () =>{
-    const res = await fetch('http://127.0.0.1:8000/myapp/kadai/', {
+    const res = await fetch('http://localhost:8000/myapp/kadai/list/', {
         method: 'GET',
+        headers:{
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+        }
       });
       return await res.json();
 };
@@ -70,8 +78,8 @@ export const postLogin = async(data:Login) =>{
     )
     console.log(responseData.user)
     
-    if (responseData.key) {
-            localStorage.setItem('access_token', responseData.key);
+    if (responseData.access) {
+            localStorage.setItem('access_token', responseData.access);
             localStorage.setItem('user', JSON.stringify(responseData.user));
         }
 
@@ -100,7 +108,18 @@ export const postRegistar = async(data:Registar) =>{
     if (!response.ok){
       throw new Error("network response not ok")
     }
-    return await response.json();
+
+    const responseData = await response.json();
+    console.log(responseData)
+    console.log(responseData.user)
+    
+    if (responseData.access) {
+            localStorage.setItem('access_token', responseData.access);
+            localStorage.setItem('user', JSON.stringify(responseData.user));
+        }else{
+          console.log("なかったよ")
+        }
+    return responseData;
   }catch (error){
     console.error("ログイン情報が違うんじゃない？？",error)
   }
