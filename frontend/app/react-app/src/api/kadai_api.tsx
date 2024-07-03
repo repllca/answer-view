@@ -63,7 +63,8 @@ export const postLogin = async(data:Login) =>{
     const response = await fetch(requests.login_endpoint,{
       method:"POST",
       headers:{
-        "Content-Type":"application/json"
+        "Content-Type":"application/json",
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
       },
       body:JSON.stringify(data)
     });
