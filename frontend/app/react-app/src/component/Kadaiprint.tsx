@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Kadailist } from "../types";
+import { nitani } from "../types";
 import { Kadai } from "../types";
 import { postKadai } from "../api/kadai_api";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
@@ -15,31 +16,33 @@ import {
   InputRightElement,
   VStack,
 } from '@chakra-ui/react'
-const Kadaiprint: React.FC<Kadai> = (props) => {
-  const [formData, setFormData] = useState<Kadailist>({
-    
+const Kadaiprint: React.FC<nitani> = (props) => {
+  const [formData, setFormData] = useState<nitani>({
+    owner:"",
     title:"",
-    answer:"",
-    owner?:"",
-    description:"",
-    date:""
+    date:"",
+    id:0
+    // count : 0,
+    // next:0,
+    // previous: 0,
+    // results:[{owner:"",title:"",id:0,date:""}]
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prevData => ({ ...prevData, [name]: value }));
-  };
+//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     const { name, value } = e.target;
+//     setFormData(prevData => ({ ...prevData, [name]: value }));
+//   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      await postKadai(formData);
-      // 成功した場合の処理
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      // エラー処理
-    }
-  };
+//   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+//     e.preventDefault();
+//     try {
+//       await postKadai(formData);
+//       // 成功した場合の処理
+//     } catch (error) {
+//       console.error('Error submitting form:', error);
+//       // エラー処理
+//     }
+//   };
 
   return (
   <div>
@@ -54,8 +57,8 @@ const Kadaiprint: React.FC<Kadai> = (props) => {
                     <Heading size='md'>Living room Sofa</Heading>
                     <Text>
                     
-                        key={index}
-                        results = {kadai.owner}
+                        results = {props.title}
+                        
                     </Text>
                     <Text color='blue.600' fontSize='2xl'>
                         $450
