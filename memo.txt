@@ -31,8 +31,8 @@ dj/registration/                   新規ユーザー登録用のエンドポイ
 dj/registration/verify-email/      メールアドレス確認用のエンドポイント
 dj/registration/resend-email/      確認メールの再送信用のエンドポイント
 myapp/kadai/list/                  課題を一覧にアクセス
-myapp/kadai/<int>/detail/          課題を詳細
-myapp/kadai/<int>/create/          課題の一覧
+myapp/kadai/list/<int>/detail/          課題を詳細
+myapp/kadai/list/<int>/create/          課題の一覧
 myapp/kadai/user/list/             ログインしたユーザが作成した課題一覧を表示
 myapp/kadai/user/<int>/edit/       ログインしたユーザが作成した特定の課題を編集
 

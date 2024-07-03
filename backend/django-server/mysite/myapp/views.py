@@ -14,7 +14,7 @@ class TitleListAPIView(generics.ListAPIView):
     filter_backends = [filters.SearchFilter]
     search_fields = ["title", "owner", "date"]
 
-class KadaiCreateAPIView(generics.RetrieveUpdateDestroyAPIView):
+class KadaiCreateAPIView(generics.CreateAPIView):
     """
     動作:kadaiの作成を行う
     permission:ログインユーザーだけ作成可能
@@ -50,10 +50,6 @@ class UserKadaiListAPIView(generics.ListAPIView):
         return Kadai.objects.filter(owner=user)
 
 class UserKadaiEditAPIView(generics.RetrieveUpdateDestroyAPIView):
-    """
-    動作:request.userが作成したkadaiの編集(retrieve,update,destroy)
-    permission:ログインユーザかつkadaiを作成したrequest.userだけ
-    """
     queryset = Kadai.objects.all()
     serializer_class = KadaiSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
