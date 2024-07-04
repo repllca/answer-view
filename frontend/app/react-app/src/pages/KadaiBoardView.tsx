@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { nitani } from '../types';
+import { Header } from '../component/Header';
 import Kadaiprint from '../component/Kadaiprint';
 import { getKadaiList, getTestList } from '../api/kadai_api';
 import { Kadai } from '../types';
-import KadaiProps from '../component/KadaiProps';
 import KadaiForm from '../component/KadaiForm';
 import { Kadailist } from '../types';
 import { ScaleFade,Button,Box} from '@chakra-ui/react'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import { Card, CardHeader, CardBody, CardFooter,Image,Stack,Heading,Text,Divider,ButtonGroup} from '@chakra-ui/react'
-import { title } from 'process';
 const KadaiBordView = () => {
     const [kadailists, setKadais] = useState<Kadai[]>([]);    
     const [kadailist, setKadai] = useState<Kadailist>();    
@@ -38,6 +37,7 @@ const KadaiBordView = () => {
     return (
         <div>
 
+      <Header/>
         <Tabs size='md' variant='enclosed'>
             <TabList>
             <Tab>課題一覧</Tab>

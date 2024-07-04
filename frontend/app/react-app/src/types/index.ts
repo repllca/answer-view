@@ -9,6 +9,12 @@ export interface Kadai {
     date:string;
 
 }
+export interface User{
+    username:string;
+    password:string;
+    email:string;
+
+}
 
 export interface Post {
     "kadai": string;
@@ -55,9 +61,4 @@ export interface Test {
 }
 
 
-// export interface HomeContentEntity {
-//     id: string,
-//     date: string,
-//     evaluation: string,
-//   };
   

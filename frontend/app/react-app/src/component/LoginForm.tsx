@@ -14,6 +14,7 @@ import {
   InputRightElement,
   VStack,
 } from '@chakra-ui/react'
+
 const LoginForm: React.FC<Login> = (props) => {
   
   const navigate = useNavigate();
@@ -97,27 +98,6 @@ const LoginForm: React.FC<Login> = (props) => {
         </form>
       </VStack>
     </Flex>
-        {/* <form onSubmit={handleSubmit}>
-          <Stack spacing={4}>
-            <InputGroup>
-              <InputLeftElement pointerEvents='none'>
-              </InputLeftElement>
-              <Input type='' placeholder='Phone number' />
-            </InputGroup>
-
-            <InputGroup>
-              <InputLeftElement pointerEvents='none' color='gray.300' fontSize='1.2em'>
-              </InputLeftElement>
-              <Input placeholder='Enter amount' />
-              <InputRightElement>
-              </InputRightElement>
-            </InputGroup>
-          </Stack>
-            <input type="text" name="username" value={formData.username} onChange={handleChange} />
-            <input type="text" name="password" value={formData.password} onChange={handleChange} />
-            <Button colorScheme="read" type="submit">Submit</Button>
-        </form>
-           <a href="registar">ログインがまだの</a>    */}
     </div>
   );
 

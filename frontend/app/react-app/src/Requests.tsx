@@ -6,6 +6,7 @@ const requests = {
   kadailist_get_endpoint: "http://127.0.0.1:8000/myapp/kadai/list/",
   UpdateSampleData: 'http://000.0.0.0:0000/SampleData',  // PUTメソッド
   DeleteSampleData: 'http://000.0.0.0:0000/SampleData',  // DELETEメソッド
+  GetUserpoint : "http://127.0.0.1:8000/dj/user/"
 };
 
 export default requests;

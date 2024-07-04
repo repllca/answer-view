@@ -1,19 +1,14 @@
 import React from 'react';
 import LoginForm from '../component/LoginForm';
-
+import { Header } from '../component/Header';
 const LoginView: React.FC = () => {
   return (
     <div>
-      <h1>総合Topです</h1>
-      <p>このアプリケーションは...</p>
+      <Header/>
                  <LoginForm
                     username=''
                     password=''
                 />
-      <ul>
-        <li>あれができます</li>
-        <li>これができません</li>
-      </ul>
     </div>
   );
 };
