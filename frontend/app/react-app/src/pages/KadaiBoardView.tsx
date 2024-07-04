@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { nitani } from '../types';
+import { Header } from '../component/Header';
 import { getKadaiList, getTestList } from '../api/kadai_api';
 import { Kadai } from '../types';
-import KadaiProps from '../component/KadaiProps';
 import KadaiForm from '../component/KadaiForm';
 import { Kadailist } from '../types';
 import { ScaleFade,Button,Box} from '@chakra-ui/react'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import { Card, CardHeader, CardBody, CardFooter,Image,Stack,Heading,Text,Divider,ButtonGroup} from '@chakra-ui/react'
-import { title } from 'process';
 const KadaiBordView = () => {
     const [kadailists, setKadais] = useState<Kadai[]>([]);    
     const [kadailist, setKadai] = useState<Kadailist>();    
@@ -37,6 +36,7 @@ const KadaiBordView = () => {
     return (
         <div>
 
+      <Header/>
         <Tabs size='md' variant='enclosed'>
             <TabList>
             <Tab>課題一覧</Tab>
@@ -136,38 +136,6 @@ const KadaiBordView = () => {
         </TabPanels>
         </Tabs>
         </div>
-        // <div>
-        //     {kadailist.map((kadai ,index) => (
-        //         <KadaiProps 
-        //             key={index}
-        //             title={kadai.title}
-        //             question={kadai.question}
-        //             answer={kadai.answer}
-        //             author={kadai.author}
-        //             question_id={kadai.question_id}
-        //         />
-        //     ))}
-
-        //     <Button onClick={onToggle}>Click Me</Button>
-        //     <ScaleFade initialScale={0.9} in={isOpen}>
-        //         <Box
-        //         p='40px'
-        //         color='white'
-        //         mt='4'
-        //         bg='teal.500'
-        //         rounded='md'
-        //         shadow='md'
-        //         >
-        //         <KadaiForm
-        //             title=''
-        //             question=''
-        //             answer=''
-        //             author=''    
-        //         />
-        //         </Box>
-        //     </ScaleFade>
-
-        // </div>
     );
 };
 

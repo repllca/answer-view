@@ -20,7 +20,9 @@ export const getTestList = async () =>{
       });
       return await res.json();
 };
-
+// export const getUser = async () => {
+//   const res = await fetch(,)
+// }
 
 
 export const postKadai = async(data:Kadai) => {
