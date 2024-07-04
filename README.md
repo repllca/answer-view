@@ -14,6 +14,8 @@ question_collection
 
 users_collection 
 
+  
+users_collection
     {
         user_id: (int),
         name: (str),
@@ -22,6 +24,8 @@ users_collection
     }
 
 ## apiのやり取り
+  
+
 
 front ➡　backend(post)
     url:api/qestion
@@ -30,11 +34,11 @@ front ➡　backend(post)
     url:api/user(post)
         user(json)を保存
 
-
+  
 front ➡　backend(get)
 
     url:api/qestion
-    
+      
         question_collectionの中身をすべて返す
 ## 実行コマンド
 コンテナの生成 `docker compose up -d`　　➡　DjangoとReactの二つのコンテナが生成される
