@@ -32,7 +32,7 @@ export const postKadai = async(data:Kadai) => {
         }
     const user=JSON.parse(userJson);
     console.log(requests.kadai_endpoint)
-    const url = requests.kadai_endpoint + user.pk;
+    const url = requests.kadai_endpoint;
     const response = await fetch(url,{
       method:"POST",
       headers:{
