@@ -20,6 +20,18 @@ export const getTestList = async () =>{
       });
       return await res.json();
 };
+
+export const getKadaiDetail = async (id:number) =>{
+  const url = "http://localhost:8000/myapp/kadai/list/" + id + "/detail/"
+    const res = await fetch(url, {
+        method: 'GET',
+        headers:{
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        }
+      });
+      return await res.json();
+};
 // export const getUser = async () => {
 //   const res = await fetch(,)
 // }

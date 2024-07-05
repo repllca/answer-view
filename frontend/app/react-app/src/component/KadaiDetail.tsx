@@ -24,26 +24,16 @@ const Kadaiprint: React.FC<nitani> = (props) => {
     title:"",
     date:"",
     id:0
-    // count : 0,
-    // next:0,
-    // previous: 0,
-    // results:[{owner:"",title:"",id:0,date:""}]
   });
 
-//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     const { name, value } = e.target;
-//     setFormData(prevData => ({ ...prevData, [name]: value }));
-//   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>,id:number) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log()
     try {
-      await getKadaiDetail(id);
+      await getKadaiDetail(formData.id);
 
-      const url = "/myapp/kadai/list/" + String(id)+ "/detail/"
-      
-      // navigate(url)
+      const url = "/myapp/kadai/list/" + String(formData.id)+ "/detail/"
+      navigate(url)
       // 成功した場合の処理
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -76,7 +66,7 @@ const Kadaiprint: React.FC<nitani> = (props) => {
     </CardBody>
 
     <CardFooter>
-      <form onSubmit={(e) => handleSubmit(e, props.id)}>
+      <form onSubmit={handleSubmit}>
       <Button type="submit" variant='solid' colorScheme='blue'>
         詳細
       </Button>

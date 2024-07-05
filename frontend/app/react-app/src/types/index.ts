@@ -6,7 +6,7 @@ export interface Kadai {
     answer:string;
     owner?:string;
     description:string;
-    date:string;
+    date?:string;
 
 }
 export interface User{

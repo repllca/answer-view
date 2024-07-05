@@ -19,10 +19,7 @@ const KadaiForm: React.FC<Kadai> = (props) => {
   const [formData, setFormData] = useState<Kadai>({
     title: '',
     answer: '',
-    owner: '',
-    date:"",
-    description:""
-
+    description: ""
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,8 +43,6 @@ const KadaiForm: React.FC<Kadai> = (props) => {
       <Input type="text" name="title" value={formData.title} onChange={handleChange} />
       <Input type="text" name="description" value={formData.description} onChange={handleChange} />
       <Input type="text" name="answer" value={formData.answer} onChange={handleChange} />
-      <Input type="text" name="owner" value={formData.owner} onChange={handleChange} />
-      <Input type="text" name="date" value={formData.date} onChange={handleChange} />
       {/* <Input type="text" name="author" value={formData.author} onChange={handleChange} /> */}
       <Button type="submit">Submit</Button>
     </form>
