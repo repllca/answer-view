@@ -148,6 +148,10 @@ REST_AUTH = {
     'JWT_AUTH_COOKIE': 'my-app-auth',
     'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
 }
+#jwtの設定
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME" : timedelta(minutes=30),
+}
 
 # メールで認証確認をする時に使うバックエンドの指定
 # 本番ではsmtp,テスト環境ではconsoleを使用
