@@ -12,7 +12,7 @@ class TitleListAPIView(generics.ListAPIView):
     queryset = Kadai.objects.all().order_by("-date")
     serializer_class = TitleListSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ["title", "owner", "date"]
+    search_fields = ["title", "date", "id","owner__username"]
 
 class KadaiCreateAPIView(generics.CreateAPIView):
     """
