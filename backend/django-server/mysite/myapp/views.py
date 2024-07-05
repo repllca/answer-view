@@ -8,11 +8,12 @@ class TitleListAPIView(generics.ListAPIView):
     """
     動作:保存されているリストを表示
     permission:誰でも
+    search:title,date,id,owner_username(完全一致)を検索,
     """
     queryset = Kadai.objects.all().order_by("-date")
     serializer_class = TitleListSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ["title", "date", "id","owner__username"]
+    search_fields = ["title", "date", "id","=owner__username"]
 
 class KadaiCreateAPIView(generics.CreateAPIView):
     """
