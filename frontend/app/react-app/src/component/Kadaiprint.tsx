@@ -37,7 +37,7 @@ const Kadaiprint: React.FC<nitani> = (props) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>,id:number) => {
     e.preventDefault();
-    console.log()
+    console.log(id)
     try {
       await getKadaiDetail(id);
 

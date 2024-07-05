@@ -19,7 +19,7 @@ const KadaiForm: React.FC<Kadai> = (props) => {
   const [formData, setFormData] = useState<Kadai>({
     title: '',
     answer: '',
-    description: ""
+    description: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
