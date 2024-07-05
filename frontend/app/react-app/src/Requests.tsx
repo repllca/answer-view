@@ -1,9 +1,21 @@
+const backurl = "https://answer-view.onrender.com/"
+const account = "dj/"
+const kadai = "myapp/kadai/"
 const requests = {
-  login_endpoint: 'http://127.0.0.1:8000/dj/login/',  // GETメソッド
-  registar_endpoint : "http://127.0.0.1:8000/dj/registration/ ",
-  kadai_endpoint: 'http://127.0.0.1:8000/myapp/kadai/list/create/',  // POSTメソッド
-  kadai_delail_3:"http://127.0.0.1:8000/myapp/kadai/3/detail/",
-  kadailist_get_endpoint: "http://127.0.0.1:8000/myapp/kadai/list/",
+  
+  // login_endpoint: 'http://127.0.0.1:8000/dj/login/',  // GETメソッド
+  // registar_endpoint : "http://127.0.0.1:8000/dj/registration/ ",
+  // kadai_endpoint: 'http://127.0.0.1:8000/myapp/kadai/list/create/',  // POSTメソッド
+  // kadai_delail_3:"http://127.0.0.1:8000/myapp/kadai/3/detail/",
+  // kadailist_get_endpoint: "http://127.0.0.1:8000/myapp/kadai/list/",
+  // UpdateSampleData: 'http://000.0.0.0:0000/SampleData',  // PUTメソッド
+  // DeleteSampleData: 'http://000.0.0.0:0000/SampleData',  // DELETEメソッド
+  // GetUserpoint : "http://127.0.0.1:8000/dj/user/"
+  login_endpoint:backurl + account + "login/",  // GETメソッド
+  registar_endpoint :backurl + account + "registration/",
+  kadai_endpoint:backurl + kadai + "list/create/",  // POSTメソッド
+  kadai_delail_3:backurl + kadai + "3/detail/",
+  kadailist_get_endpoint: backurl + "llist/",
   UpdateSampleData: 'http://000.0.0.0:0000/SampleData',  // PUTメソッド
   DeleteSampleData: 'http://000.0.0.0:0000/SampleData',  // DELETEメソッド
   GetUserpoint : "http://127.0.0.1:8000/dj/user/"
