@@ -144,8 +144,13 @@ REST_AUTH = {
     'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
     "LOGIN_SERIALIZER" : "accounts.serializers.CustomLoginSerializer",
     "USE_JWT" : True,
+    'JWT_AUTH_COOKIE': 'jwt-auth',
     'JWT_AUTH_COOKIE': 'my-app-auth',
     'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
+}
+#jwtの設定
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME" : timedelta(minutes=30),
 }
 
 # メールで認証確認をする時に使うバックエンドの指定

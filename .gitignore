@@ -1,2 +1,42 @@
-/backend/django-sever/mysite/myapp/migrations/
-./backend/django-server/mysite/accounts/migrations
+./backend/django-sever/mysite/myapp/migrations/
+./backend/django-server/mysite/accounts/migrations/
+/backend/django-server/mysite/db.sqlite3
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Django stuff
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3-journal
+
+
+# Django migrations
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# Pytest
+.pytest_cache/
+
+# MyPy
+.mypy_cache/
+
+
+# IDEs
+.vscode/
+
+# Coverage reports
+htmlcov/
+.tox/
+.coverage
+coverage.xml
+*.cover
+.hypothesis/

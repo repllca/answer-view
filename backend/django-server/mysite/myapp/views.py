@@ -8,11 +8,12 @@ class TitleListAPIView(generics.ListAPIView):
     """
     動作:保存されているリストを表示
     permission:誰でも
+    search:title,date,id,owner_username(完全一致)を検索,
     """
     queryset = Kadai.objects.all().order_by("-date")
     serializer_class = TitleListSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ["title", "owner", "date"]
+    search_fields = ["title", "date", "id","=owner__username"]
 
 class KadaiCreateAPIView(generics.CreateAPIView):
     """
@@ -37,9 +38,7 @@ class KadaiDetailAPIView(generics.RetrieveAPIView):
 
 class UserKadaiListAPIView(generics.ListAPIView):
     """
-    動作:request.userが作成したkadai一覧を表示
-    permission:ログインユーザかつrequest.userが作成したkadaiだけ
-    """
+    動作:request.userが作成したkadai一覧を表示 permission:ログインユーザかつrequest.userが作成したkadaiだけ """
     serializer_class = TitleListSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -50,6 +49,13 @@ class UserKadaiListAPIView(generics.ListAPIView):
         return Kadai.objects.filter(owner=user)
 
 class UserKadaiEditAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Kadai.objects.all()
+    """
+    動作:request.userが作成したkadaiの編集を行う(update,delete,create)
+    permission:ログインユーザかつrequest.userが作成したkadaiだけ 
+    """
     serializer_class = KadaiSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Kadai.objects.filter(owner=user)    
