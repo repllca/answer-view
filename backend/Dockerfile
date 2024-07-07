@@ -15,5 +15,5 @@ WORKDIR /root/django-server/mysite
 
 
 # CMD python manage.py runserver 0.0.0.0:8000
-CMD ./setup_sql.sh
-CMD ./run_server.sh
+# CMD ./setup_sql.sh
+# CMD ./run_server.sh

@@ -10,33 +10,123 @@ __pycache__/
 # C extensions
 *.so
 
-# Django stuff
+# Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+__pycache__/
+*.pyc
+*.pyo
+
+# Django specific
 *.log
 *.pot
 *.pyc
+*.pyo
+*.pyd
 __pycache__/
 local_settings.py
-db.sqlite3-journal
+db.sqlite3
+media
 
+# Flask specific
+instance/
+.webassets-cache
 
-# Django migrations
-**/migrations/*.py
-!**/migrations/__init__.py
+# Scrapy stuff:
+.scrapy
 
-# Pytest
-.pytest_cache/
+# Sphinx documentation
+docs/_build/
 
-# MyPy
-.mypy_cache/
+# PyBuilder
+target/
 
+# Jupyter Notebook
+.ipynb_checkpoints
 
-# IDEs
+# pyenv
+.python-version
+
+# pipenv
+pipenv.lock
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.envrc
+venv/
+venv.bak/
+.env.bak/
+.pip/
+
+# Editor specific
 .vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+
+# Backup files
+*.bak
+*.tmp
+*.temp
+*.old
+*.orig
+
+# JetBrains specific
+.idea/
+*.iml
+*.ipr
+*.iws
+.idea/*
+
+# MySQL dumps
+*.sql
 
 # Coverage reports
-htmlcov/
-.tox/
 .coverage
+.tox/
+.cache
+nosetests.xml
 coverage.xml
 *.cover
 .hypothesis/
+.pytest_cache/
+htmlcov/
+
+# macOS
+.DS_Store
+
+# Docker
+**/Dockerfile
+**/docker-compose.yml
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
