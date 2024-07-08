@@ -22,6 +22,7 @@ export const getTestList = async () =>{
 };
 
 export const getKadaiDetail = async (id:number) =>{
+  console.log("id",id)
   const url = "http://localhost:8000/myapp/kadai/list/" + id + "/detail/"
     const res = await fetch(url, {
         method: 'GET',
@@ -30,6 +31,8 @@ export const getKadaiDetail = async (id:number) =>{
           'Authorization': `Bearer ${localStorage.getItem('access_token')}`
         }
       });
+      
+      console.log(res)
       return await res.json();
 };
 // export const getUser = async () => {

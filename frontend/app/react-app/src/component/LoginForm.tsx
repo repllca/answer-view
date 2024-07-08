@@ -36,7 +36,7 @@ const LoginForm: React.FC<Login> = (props) => {
       // 成功した場合の処理
       if(responseData && responseData.access){
 
-        navigate("/home")
+        navigate("/kadai_api")
       }else{
         console.log("ページ遷移はできてないよ")
       }

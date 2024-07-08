@@ -8,10 +8,6 @@ import RegistrationView from './pages/RegistrationView';
 import KadaiDetail from './component/KadaiDetail';
 import KadaiDetailView from './pages/KadaiDetailView';
 
-const KadaiBoardView : React.FC() => {
-  const {id} = useParams<{id: string}>(); 
-  return <div></div>
-};
 
 
 const App: React.FC = () => {
