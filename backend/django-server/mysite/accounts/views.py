@@ -1,16 +1,15 @@
-from allauth.account.views import ConfirmEmailView  
-from django.contrib.auth import login
-from django.shortcuts import redirect
+from django.conf import settings
+from django.http import HttpResponseRedirect
 
-class CustomConfirmEmailView(ConfirmEmailView):
-    template_name = "account/email_confirm.html"
-    success_url = "http://localhost:3000/login/"
 
-    def post(self, *args, **kwargs):
-        self.object = confirmation = self.get_object()
-        confirmation.confirm(self.request)
-        login(self.request, confirmation.email_address.user)
-        return redirect(self.get_success_url())
 
-    def get_success_url(self):
-        return self.success_url
+def email_confirm_redirect(request, key):
+    return HttpResponseRedirect(
+        f"{settings.EMAIL_CONFIRM_REDIRECT_BASE_URL}{key}/"
+    )
+
+
+def password_reset_confirm_redirect(request, uidb64, token):
+    return HttpResponseRedirect(
+        f"{settings.PASSWORD_RESET_CONFIRM_REDIRECT_BASE_URL}{uidb64}/{token}/"
+    )

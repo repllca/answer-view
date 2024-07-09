@@ -164,6 +164,18 @@ EMAIL_USE_TLS = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 #登録時に必ず電子メールを要求する
 ACCOUNT_EMAIL_REQUIRED = True
+#webサイトがユーザを確認できるようにする
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+# LOGIN_URL = 'http://localhost:8000:/users/login'
+# <EMAIL_CONFIRM_REDIRECT_BASE_URL>/<key>
+EMAIL_CONFIRM_REDIRECT_BASE_URL = \
+    "http://localhost:8000/accounts/account/confirm/email/"
+
+
+# <PASSWORD_RESET_CONFIRM_REDIRECT_BASE_URL>/<uidb64>/<token>/
+PASSWORD_RESET_CONFIRM_REDIRECT_BASE_URL = \
+    "http://localhost:8000/accounts/password/reset/confirm/"
+
 
 
 #ページネーション
@@ -175,3 +187,8 @@ REST_FRAMEWORK = {
         'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
     )
 }
+
+AUTHENTICATION_BACKENDS = [
+   'django.contrib.auth.backends.ModelBackend',  # デフォルトのDjango認証バックエンド
+   'allauth.account.auth_backends.AuthenticationBackend',  # django-allauthパッケージの認証バックエンド
+]
