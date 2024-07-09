@@ -30,21 +30,13 @@ INSTALLED_APPS = [
 
     # 3rd party apps
     "rest_framework",
-
-    "rest_framework.authtoken",
-    "dj_rest_auth",
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'dj_rest_auth.registration',
+    "djoser",
 
     # my applications
     "myapp.apps.MyappConfig",
-    "accounts",
+    # "accounts",
 ]
 
-SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,9 +46,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'allauth.account.middleware.AccountMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -138,44 +127,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#登録アカウントを変更
-AUTH_USER_MODEL = 'accounts.CustomUser'
-REST_AUTH = {
-    'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
-    "LOGIN_SERIALIZER" : "accounts.serializers.CustomLoginSerializer",
-    "USE_JWT" : True,
-    'JWT_AUTH_COOKIE': 'jwt-auth',
-    'JWT_AUTH_COOKIE': 'my-app-auth',
-    'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
-}
-#jwtの設定
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME" : timedelta(minutes=30),
-}
-
-# メールで認証確認をする時に使うバックエンドの指定
-# 本番ではsmtp,テスト環境ではconsoleを使用
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# 取得したメールアドレス
-EMAIL_HOST_USER = "test_email@test_email.com"
-# 文章を暗号化
-EMAIL_USE_TLS = True
-#電子メールアドレスを確認するまでログインできない 
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-#登録時に必ず電子メールを要求する
-ACCOUNT_EMAIL_REQUIRED = True
-#webサイトがユーザを確認できるようにする
-ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-# LOGIN_URL = 'http://localhost:8000:/users/login'
-# <EMAIL_CONFIRM_REDIRECT_BASE_URL>/<key>
-EMAIL_CONFIRM_REDIRECT_BASE_URL = \
-    "http://localhost:8000/accounts/account/confirm/email/"
-
-
-# <PASSWORD_RESET_CONFIRM_REDIRECT_BASE_URL>/<uidb64>/<token>/
-PASSWORD_RESET_CONFIRM_REDIRECT_BASE_URL = \
-    "http://localhost:8000/accounts/password/reset/confirm/"
-
 
 
 #ページネーション
@@ -183,12 +134,14 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
 
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
-    )
 }
 
-AUTHENTICATION_BACKENDS = [
-   'django.contrib.auth.backends.ModelBackend',  # デフォルトのDjango認証バックエンド
-   'allauth.account.auth_backends.AuthenticationBackend',  # django-allauthパッケージの認証バックエンド
-]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
+}
