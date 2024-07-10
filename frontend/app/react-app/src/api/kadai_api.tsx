@@ -31,9 +31,22 @@ export const getKadaiDetail = async (id:number) =>{
           'Authorization': `Bearer ${localStorage.getItem('access_token')}`
         }
       });
-      
       console.log(res)
       return await res.json();
+};
+
+export const isGetKadaiDetail = async (id:number) =>{
+  console.log("id",id)
+  const url = "http://localhost:8000/myapp/kadai/list/" + id + "/detail/"
+    const res = await fetch(url, {
+        method: 'GET',
+        headers:{
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        }
+      });
+      console.log(res)
+      return await res;
 };
 // export const getUser = async () => {
 //   const res = await fetch(,)

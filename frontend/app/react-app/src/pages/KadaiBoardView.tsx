@@ -1,77 +1,104 @@
 import React, { useState, useEffect } from 'react';
-import { nitani } from '../types';
 import { Header } from '../component/Header';
+import { useNavigate } from 'react-router-dom';
 import Kadaiprint from '../component/Kadaiprint';
-import { getKadaiList, getTestList } from '../api/kadai_api';
-import { Kadai } from '../types';
 import KadaiForm from '../component/KadaiForm';
-import { Kadailist } from '../types';
-import { ScaleFade,Button,Box} from '@chakra-ui/react'
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import { Card, CardHeader, CardBody, CardFooter,Image,Stack,Heading,Text,Divider,ButtonGroup} from '@chakra-ui/react'
+import { getTestList } from '../api/kadai_api';
+import { Kadailist, Kadai } from '../types';
+import { isGetKadaiDetail } from '../api/kadai_api';
+import { getKadaiDetail } from '../api/kadai_api';
+import { Tabs, TabList, TabPanels, Tab, TabPanel, Box } from '@chakra-ui/react';
+
+import {
+  useDisclosure,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from '@chakra-ui/react';
 const KadaiBordView = () => {
-    const [kadailists, setKadais] = useState<Kadai[]>([]);    
-    const [kadailist, setKadai] = useState<Kadailist>();    
-    const [isOpen, setIsOpen] = useState(false);
-    let nitanilist  : nitani[];
-    const onToggle = () => {
-        setIsOpen(!isOpen);
+  
+  const {
+    isOpen: isVisible,
+    onClose,
+    onOpen,
+  } = useDisclosure({ defaultIsOpen: false });
+  const [kadailist, setKadailist] = useState<Kadailist | null>(null);
+  const navigate = useNavigate();
+  useEffect(() => {
+    getTestList()
+      .then((values: Kadailist) => {
+        setKadailist(values);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  const handleKadaiDetail = async (id: number,title: string) => {
+    console.log(id)
+    const url = "/detail/"+id
+    try {
+      const response = await isGetKadaiDetail(id);
+      console.log("responseのstatus",response.status) 
+      // 成功した場合の処理
+      if(response.status == 200){
+        navigate(url)
       };
-    // useEffect(() => {
-    //     getKadaiList()
-    //         .then((values: Kadai[]) => {
-    //             setKadai(values);
-    //         })
-    // }, []);
-    useEffect(() => {
-        getTestList()
-            .then((values: Kadailist) => {
-                setKadai(values);
-                console.log(values.results)
-                nitanilist = values.results
-                console.log(nitanilist)
-            })
-    }, []);
 
-    
-    return (
-        <div>
+        onOpen();
+    } catch (error) {
+      
+        onOpen();
+      console.error('Error submitting form:', error);
+      // エラー処理
+    }
+  };
 
-      <Header/>
-        <Tabs size='md' variant='enclosed'>
-            <TabList>
-            <Tab>課題一覧</Tab>
-            <Tab>課題投稿</Tab>
+  return (
+    <div>
+      <Header />
+              {isVisible && (
+                <Alert status='error'>
+                  <AlertIcon />
+                  <AlertTitle>見るためにはログインする必要があります。</AlertTitle>
+                  <AlertDescription color={'blue'}as="a"href='/login'>ログイン</AlertDescription>
+                </Alert>
+              )}
+      <Tabs size='md' variant='enclosed'>
+        <TabList>
+          <Tab>課題一覧</Tab>
+          <Tab>課題投稿</Tab>
         </TabList>
         <TabPanels>
-            <TabPanel>
-            {kadailist?.results.map((kadai ,index) => (  
-
-                    <Kadaiprint
-                    title={kadai.title}
-                    owner ={kadai.date}
-                    date = {kadai.date}
-                    id = {kadai.id}
-                    />
-
+          <TabPanel>
+            {kadailist?.results.map((kadai, index) => (
+              <Kadaiprint
+                key={kadai.id}
+                id={kadai.id}
+                title={kadai.title}
+                owner={kadai.owner}
+                date={kadai.date}
+                onClick={handleKadaiDetail} // onClickプロパティに関数を渡す
+              />
             ))}
-            </TabPanel>
-            
-            <TabPanel>
+          </TabPanel>
+          <TabPanel>
             <KadaiForm
-            title=''
-            description=''
-            answer=''
-            owner=''
-            date=''
-            
+              title=''
+              description=''
+              answer=''
+              owner=''
+              date=''
             />
             <p>two!</p>
-            </TabPanel>
+          </TabPanel>
         </TabPanels>
-        </Tabs>
-        </div>
-    );
+      </Tabs>
+    </div>
+  );
 };
 
 export default KadaiBordView;
+
+
