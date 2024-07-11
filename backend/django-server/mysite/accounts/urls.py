@@ -1,5 +1,7 @@
-# from django.urls import path,include, re_path
+from django.urls import path,include, re_path
+from . import views
 
-# urlpatterns = [
-
-# ]
+urlpatterns = [
+    path("exists/", views.check_username_exists, name="exists"),
+    path("home/", views.home, name="home"),
+]
