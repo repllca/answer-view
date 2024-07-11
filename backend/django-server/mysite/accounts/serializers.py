@@ -1,87 +1,31 @@
-from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer, UserSerializer as BaseUserSerializer
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework.exceptions import ValidationError
+from rest_framework import serializers
+from django.contrib.auth.password_validation import validate_password
+# from .models import CustomUser
 from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import make_password
 
+CustomUser = get_user_model()
+class CustomUserSerializer(serializers.ModelSerializer):
+    password1 = serializers.CharField(write_only=True, required=True, validators=[validate_password])
+    password2 = serializers.CharField(write_only=True, required=True)
 
-user = get_user_model()
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'username', 'email', 'school_name', 'password1', 'password2']
 
-# creating new users
+    def validate(self, attrs):
+        if attrs['password1'] != attrs['password2']:
+            raise serializers.ValidationError({"password": "Password fields didn't match."})
+        return attrs
 
+    def validate_password(self, value: str) -> str:
+        return make_password(value)
 
-class UserCreateSerializer(BaseUserCreateSerializer):
-
-    class Meta(BaseUserCreateSerializer.Meta):
-        fields = ['id', 'username', 'password', 'first_name', 'last_name',
-                  'email', ]
-
-    # you can grab the created user and do something with them here
     def create(self, validated_data):
-
-        user = super().create(validated_data)
-
+        user = CustomUser.objects.create_user(
+            email=validated_data['email'],
+            username=validated_data['username'],
+            school_name=validated_data['school_name'],
+            password=validated_data['password1']
+        )
         return user
-
-
-class UserSerializer(BaseUserSerializer):
-    class Meta(BaseUserCreateSerializer.Meta):
-        fields = ['id', 'first_name',
-                  'last_name', 'email',
-                  'username',
-                  'is_active',
-                  'is_deactivated',
-                  ]
-
-    # this is where we send a request to slash me/ or auth/users
-    def validate(self, attrs):
-        validated_attr = super().validate(attrs)
-        username = validated_attr.get('username')
-
-        user = user.objects.get(username=username)
-
-        if user.is_deactivated:
-            raise ValidationError(
-                'Account deactivated')
-
-        if not user.is_active:
-            raise ValidationError(
-                'Account not activated')
-
-        return validated_attr
-
-
-class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    def validate(self, attrs):
-        data = super().validate(attrs)
-
-        obj = self.user
-
-        # you can do all sort of things here !!!
-        # let me try something crazy if a user's last login is less than 2-minutes we deny
-        # them access to the system 🤣🤣🤣🥲
-        '''
-        current_time = datetime.now()
-        two_minutes_ago = current_time - timedelta(minutes=2)
-        if obj.last_login > two_minutes_ago :
-            raise ValidationError(
-                'You are not allowed to login at this time wait for 2 minutes ')
-
-        
-        '''
-        # if obj.is_deactivated:
-        #     raise ValidationError(
-        #         'Account deactivated. Account deactivated!!')
-
-        # if not obj.is_active:
-        #     raise ValidationError(
-        #         'Account not activated. go to your email and activate your account')
-
-        data.update({
-            'id': obj.id, 'first_name': obj.first_name,
-            'last_name': obj.last_name, 'email': obj.email,
-            'username': obj.username,
-            'is_active': obj.is_active,
-            'is_deactivated': obj.is_deactivated,
-        })
-
-        return data
