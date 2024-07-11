@@ -13,6 +13,9 @@ import {
     IconButton,
     MenuItem,
 } from '@chakra-ui/react';
+import {
+    HamburgerIcon
+} from '@chakra-ui/icons'
 import { FC } from 'react';
 
 export const Header: FC = (props) => {    
@@ -28,6 +31,7 @@ export const Header: FC = (props) => {
             <MenuButton
                 as={IconButton}
                 aria-label='Options'
+                icon={<HamburgerIcon/>}
                 variant='outline'
             />
             <MenuList>

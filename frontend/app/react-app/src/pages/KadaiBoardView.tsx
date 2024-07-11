@@ -65,6 +65,7 @@ const KadaiBordView = () => {
                   <AlertDescription color={'blue'}as="a"href='/login'>ログイン</AlertDescription>
                 </Alert>
               )}
+        
       <Tabs size='md' variant='enclosed'>
         <TabList>
           <Tab>課題一覧</Tab>
