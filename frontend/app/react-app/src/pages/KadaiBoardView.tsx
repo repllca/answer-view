@@ -3,7 +3,7 @@ import { Header } from '../component/Header';
 import { useNavigate } from 'react-router-dom';
 import Kadaiprint from '../component/Kadaiprint';
 import KadaiForm from '../component/KadaiForm';
-import { getTestList } from '../api/kadai_api';
+import { getKadaiList} from '../api/kadai_api';
 import { Kadailist, Kadai } from '../types';
 import { isGetKadaiDetail } from '../api/kadai_api';
 import { getKadaiDetail } from '../api/kadai_api';
@@ -26,7 +26,7 @@ const KadaiBordView = () => {
   const [kadailist, setKadailist] = useState<Kadailist | null>(null);
   const navigate = useNavigate();
   useEffect(() => {
-    getTestList()
+    getKadaiList()
       .then((values: Kadailist) => {
         setKadailist(values);
       })

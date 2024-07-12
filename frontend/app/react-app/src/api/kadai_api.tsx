@@ -3,7 +3,7 @@ import { Login } from "../types";
 import { Registar } from "../types";
 import requests from "../Requests";
 export const getKadaiList = async () =>{
-    const res = await fetch('http://localhost:8000/myapp/kadai/list/', {
+    const res = await fetch(requests.kadai_list_url, {
         method: 'GET',
         headers:{
           'Content-Type': 'application/json'
@@ -11,15 +11,15 @@ export const getKadaiList = async () =>{
       });
       return await res.json();
 };
-export const getTestList = async () =>{
-    const res = await fetch('http://localhost:8000/myapp/kadai/list/', {
-        method: 'GET',
-        headers:{
-          'Content-Type': 'application/json'
-        }
-      });
-      return await res.json();
-};
+// export const getTestList = async () =>{
+//     const res = await fetch('http://localhost:8000/myapp/kadai/list/', {
+//         method: 'GET',
+//         headers:{
+//           'Content-Type': 'application/json'
+//         }
+//       });
+//       return await res.json();
+// };
 
 export const getKadaiDetail = async (id:number) =>{
   console.log("id",id)
@@ -28,7 +28,7 @@ export const getKadaiDetail = async (id:number) =>{
         method: 'GET',
         headers:{
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+          'Authorization': `JWT ${localStorage.getItem('access_token')}`
         }
       });
       console.log(res)
@@ -42,7 +42,7 @@ export const isGetKadaiDetail = async (id:number) =>{
         method: 'GET',
         headers:{
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+          'Authorization': `JWT ${localStorage.getItem('access_token')}`
         }
       });
       console.log(res)
@@ -55,19 +55,19 @@ export const isGetKadaiDetail = async (id:number) =>{
 
 export const postKadai = async(data:Kadai) => {
   try{
-    console.log(requests.kadai_endpoint)
+    console.log(requests.kadai_create_url)
     const userJson = localStorage.getItem("user");
         if (!userJson) {
             throw new Error("User not found in localStorage");
         }
     const user=JSON.parse(userJson);
-    console.log(requests.kadai_endpoint)
-    const url = requests.kadai_endpoint;
+    console.log(requests.kadai_create_url)
+    const url = requests.kadai_create_url;
     const response = await fetch(url,{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
-        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+        'Authorization': `JWT ${localStorage.getItem('access_token')}`,
       },
       body:JSON.stringify(data)
     });
@@ -88,7 +88,7 @@ export const postKadai = async(data:Kadai) => {
 export const postLogin = async(data:Login) =>{
   console.log("データのなかみ",data)
   try{
-    const response = await fetch(requests.login_endpoint,{
+    const response = await fetch(requests.login_url,{
       method:"POST",
       headers:{
         "Content-Type":"application/json"
@@ -123,7 +123,7 @@ export const postLogin = async(data:Login) =>{
 export const postRegistar = async(data:Registar) =>{
   console.log("データのなかみ",data)
   try{
-    const response = await fetch(requests.registar_endpoint,{
+    const response = await fetch(requests.register_url,{
       method:"POST",
       headers:{
         "Content-Type":"application/json"
@@ -139,14 +139,14 @@ export const postRegistar = async(data:Registar) =>{
 
     const responseData = await response.json();
     console.log(responseData)
-    console.log(responseData.user)
+    // console.log(responseData.user)
     
-    if (responseData.access) {
-            localStorage.setItem('access_token', responseData.access);
-            localStorage.setItem('user', JSON.stringify(responseData.user));
-        }else{
-          console.log("なかったよ")
-        }
+    // if (responseData.access) {
+    //         localStorage.setItem('access_token', responseData.access);
+    //         localStorage.setItem('user', JSON.stringify(responseData.user));
+    //     }else{
+    //       console.log("なかったよ")
+    //     }
     return responseData;
   }catch (error){
     console.error("ログイン情報が違うんじゃない？？",error)
