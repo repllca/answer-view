@@ -25,18 +25,10 @@ myapp/kadai/list/create/          課題の投稿
 myapp/kadai/user/list/             ログインしたユーザが作成した課題一覧を表示
 myapp/kadai/user/<int>/edit/       ログインしたユーザが作成した特定の課題を編集
 
-auth/users/                             user登録
-auth/users/me/                          userの詳細
-auth/users/confirm/
-auth/users/resend_activation/
-auth/users/set_password/
-auth/users/reset_password/
-auth/users/reset_password_confirm/
-auth/users/set_username/
-auth/users/reset_username/
-auth/users/reset_username_confirm/
-/jwt/create/ (JSON Web Token Authentication) jwtの作成
-/jwt/refresh/ (JSON Web Token Authentication) jwtのリフレッシュ
-/jwt/verify/ (JSON Web Token Authentication) jwtの検証
+auth/register/                             user登録
+auth/login/                                login 
+auth/login/refresh                         tokenのリフレッシュ
+auth/logout/                               logout
+auth/detail/                               userの詳細を確認
 
 https://djoser.readthedocs.io/en/latest/base_endpoints.html
