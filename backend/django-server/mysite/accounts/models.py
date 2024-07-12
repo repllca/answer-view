@@ -18,7 +18,7 @@ class CustomUserManager(BaseUserManager):
 
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
-        extra_fields.setdefault('is_active', False)
+        extra_fields.setdefault('is_active', True)
         
         email = self.normalize_email(email)
         user = self.model(email=email, username=username, school_name=school_name, **extra_fields)

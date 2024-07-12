@@ -30,7 +30,7 @@ INSTALLED_APPS = [
 
     # 3rd party apps
     "rest_framework",
-    "djoser",
+    'rest_framework_simplejwt',
 
     # my applications
     "myapp.apps.MyappConfig",
@@ -153,24 +153,3 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=5),
 }
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'your-email@gmail.com'
-# EMAIL_HOST_PASSWORD = 'your-password'
-SITE_NAME = "test djoser"
-
-DJOSER = {
-    'PASSWORD_RESET_CONFIRM_URL': 'auth/users/password/reset/confirm/{uid}/{token}',
-    'USERNAME_RESET_CONFIRM_URL': 'auth/users/username/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL': 'auth/users/activation/{uid}/{token}',
-    "TOKEN_MODEL": None,
-
-    'SEND_ACTIVATION_EMAIL': True,
-    'SERIALIZERS': {
-        'user_create': 'accounts.serializers.CustomUserSerializer',
-        'user': 'accounts.serializers.CustomUserSerializer',
-        'current_user': 'accounts.serializers.CustomUserSerializer',
-    },
-}
