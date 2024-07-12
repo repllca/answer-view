@@ -30,33 +30,25 @@ INSTALLED_APPS = [
 
     # 3rd party apps
     "rest_framework",
-
-    "rest_framework.authtoken",
-    "dj_rest_auth",
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'dj_rest_auth.registration',
+    "djoser",
 
     # my applications
     "myapp.apps.MyappConfig",
     "accounts",
 ]
 
-SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    #追加 cors
+    "corsheaders.middleware.CorsMiddleware",
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'allauth.account.middleware.AccountMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -119,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'ja'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'Asia/Tokyo'
 
@@ -138,33 +130,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#登録アカウントを変更
-AUTH_USER_MODEL = 'accounts.CustomUser'
-REST_AUTH = {
-    'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
-    "LOGIN_SERIALIZER" : "accounts.serializers.CustomLoginSerializer",
-    "USE_JWT" : True,
-    'JWT_AUTH_COOKIE': 'jwt-auth',
-    'JWT_AUTH_COOKIE': 'my-app-auth',
-    'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
-}
-#jwtの設定
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME" : timedelta(minutes=30),
-}
 
-# メールで認証確認をする時に使うバックエンドの指定
-# 本番ではsmtp,テスト環境ではconsoleを使用
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# 取得したメールアドレス
-EMAIL_HOST_USER = "test_email@test_email.com"
-# 文章を暗号化
-EMAIL_USE_TLS = True
-#電子メールアドレスを確認するまでログインできない 
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-#登録時に必ず電子メールを要求する
-ACCOUNT_EMAIL_REQUIRED = True
-
+#-------------------------------------------------
+AUTH_USER_MODEL = "accounts.CustomUser"
 
 #ページネーション
 REST_FRAMEWORK = {
@@ -172,6 +140,37 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 20,
 
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
-    )
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
+    #トークンの持続時間の設定
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    # リフレッシュトークン(5日)
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=5),
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your-email@gmail.com'
+# EMAIL_HOST_PASSWORD = 'your-password'
+SITE_NAME = "test djoser"
+
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': 'auth/users/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': 'auth/users/username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': 'auth/users/activation/{uid}/{token}',
+    "TOKEN_MODEL": None,
+
+    'SEND_ACTIVATION_EMAIL': True,
+    'SERIALIZERS': {
+        'user_create': 'accounts.serializers.CustomUserSerializer',
+        'user': 'accounts.serializers.CustomUserSerializer',
+        'current_user': 'accounts.serializers.CustomUserSerializer',
+    },
 }

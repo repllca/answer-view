@@ -1,16 +1,9 @@
-from allauth.account.views import ConfirmEmailView  
-from django.contrib.auth import login
-from django.shortcuts import redirect
+# from rest_framework import generics 
+# from rest_framework.permissions import AllowAny
+# from .models import CustomUser
+# from .serializers import CustomUserSerializer
 
-class CustomConfirmEmailView(ConfirmEmailView):
-    template_name = "account/email_confirm.html"
-    success_url = "http://localhost:3000/login/"
-
-    def post(self, *args, **kwargs):
-        self.object = confirmation = self.get_object()
-        confirmation.confirm(self.request)
-        login(self.request, confirmation.email_address.user)
-        return redirect(self.get_success_url())
-
-    def get_success_url(self):
-        return self.success_url
+# class CustomUserCreateView(generics.CreateAPIView):
+#     queryset = CustomUser.objects.all()
+#     permission_classes = (AllowAny,)
+#     serializer_class = CustomUserSerializer
