@@ -30,6 +30,7 @@ INSTALLED_APPS = [
 
     # 3rd party apps
     "rest_framework",
+    'rest_framework_simplejwt',
 
     # my applications
     "myapp.apps.MyappConfig",
@@ -138,9 +139,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
 
-    # 'DEFAULT_AUTHENTICATION_CLASSES': (
-    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
-    # ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
 }
 
 
