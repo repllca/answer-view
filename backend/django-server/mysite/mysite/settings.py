@@ -30,7 +30,6 @@ INSTALLED_APPS = [
 
     # 3rd party apps
     "rest_framework",
-    "djoser",
 
     # my applications
     "myapp.apps.MyappConfig",
@@ -139,38 +138,17 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
 
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # ),
 }
 
 
-SIMPLE_JWT = {
-   'AUTH_HEADER_TYPES': ('JWT',),
-    #トークンの持続時間の設定
-    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
-    # リフレッシュトークン(5日)
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=5),
-}
+# SIMPLE_JWT = {
+#    'AUTH_HEADER_TYPES': ('JWT',),
+#     #トークンの持続時間の設定
+#     'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+#     # リフレッシュトークン(5日)
+#     "REFRESH_TOKEN_LIFETIME": timedelta(days=5),
+# }
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'your-email@gmail.com'
-# EMAIL_HOST_PASSWORD = 'your-password'
-SITE_NAME = "test djoser"
-
-DJOSER = {
-    'PASSWORD_RESET_CONFIRM_URL': 'auth/users/password/reset/confirm/{uid}/{token}',
-    'USERNAME_RESET_CONFIRM_URL': 'auth/users/username/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL': 'auth/users/activation/{uid}/{token}',
-    "TOKEN_MODEL": None,
-
-    'SEND_ACTIVATION_EMAIL': True,
-    'SERIALIZERS': {
-        'user_create': 'accounts.serializers.CustomUserSerializer',
-        'user': 'accounts.serializers.CustomUserSerializer',
-        'current_user': 'accounts.serializers.CustomUserSerializer',
-    },
-}
