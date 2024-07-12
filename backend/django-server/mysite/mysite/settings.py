@@ -145,11 +145,11 @@ REST_FRAMEWORK = {
 }
 
 
-# SIMPLE_JWT = {
-#    'AUTH_HEADER_TYPES': ('JWT',),
-#     #トークンの持続時間の設定
-#     'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
-#     # リフレッシュトークン(5日)
-#     "REFRESH_TOKEN_LIFETIME": timedelta(days=5),
-# }
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
+    #トークンの持続時間の設定
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    # リフレッシュトークン(5日)
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=5),
+}
 
