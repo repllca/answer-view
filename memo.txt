@@ -19,23 +19,24 @@ users
 
 backendのurlの概要
 admin/                                       管理画面にアクセス
-dj/login/                          ユーザーログイン用のエンドポイント
-dj/logout/                         ユーザーログアウト用のエンドポイント
-dj/password/reset/                 パスワードリセット用のメールを送信するエンドポイント
-dj/password/reset/confirm/         パスワードリセットの確認と新しいパスワード設定用のエンドポイント
-dj/password/reset/change/          ログイン中のユーザーがパスワードを変更するためのエンドポイント
-dj/user/                           現在のユーザー情報を取得または更新するためのエンドポイント
-dj/token/verify/                   トークンの有効性を確認するためのエンドポイント
-dj/token/refresh/                  新しいアクセストークンを取得するためのエンドポイント
-dj/registration/                   新規ユーザー登録用のエンドポイント
-dj/registration/verify-email/      メールアドレス確認用のエンドポイント
-dj/registration/resend-email/      確認メールの再送信用のエンドポイント
 myapp/kadai/list/                  課題を一覧にアクセス
 myapp/kadai/list/<int>/detail/          課題を詳細
 myapp/kadai/list/create/          課題の投稿
 myapp/kadai/user/list/             ログインしたユーザが作成した課題一覧を表示
 myapp/kadai/user/<int>/edit/       ログインしたユーザが作成した特定の課題を編集
 
+auth/users/                             user登録
+auth/users/me/                          userの詳細
+auth/users/confirm/
+auth/users/resend_activation/
+auth/users/set_password/
+auth/users/reset_password/
+auth/users/reset_password_confirm/
+auth/users/set_username/
+auth/users/reset_username/
+auth/users/reset_username_confirm/
+/jwt/create/ (JSON Web Token Authentication) jwtの作成
+/jwt/refresh/ (JSON Web Token Authentication) jwtのリフレッシュ
+/jwt/verify/ (JSON Web Token Authentication) jwtの検証
 
-frontのurlの概要
-/Kadai_api/　課題の一覧、課題投稿の画面を表示する
+https://djoser.readthedocs.io/en/latest/base_endpoints.html
