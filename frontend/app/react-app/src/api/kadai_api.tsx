@@ -1,18 +1,73 @@
 import { Kadai } from "../types";
-
+import { Login } from "../types";
+import { Registar } from "../types";
+import requests from "../Requests";
 export const getKadaiList = async () =>{
-    const res = await fetch('http://127.0.0.1:8000/myapp/test/', {
+    const res = await fetch(requests.kadai_list_url, {
         method: 'GET',
+        headers:{
+          'Content-Type': 'application/json'
+        }
       });
       return await res.json();
 };
+// export const getTestList = async () =>{
+//     const res = await fetch('http://localhost:8000/myapp/kadai/list/', {
+//         method: 'GET',
+//         headers:{
+//           'Content-Type': 'application/json'
+//         }
+//       });
+//       return await res.json();
+// };
+
+export const getKadaiDetail = async (id:number) =>{
+  console.log("id",id)
+  const url = "http://localhost:8000/myapp/kadai/list/" + id + "/detail/"
+    const res = await fetch(url, {
+        method: 'GET',
+        headers:{
+          'Content-Type': 'application/json',
+          'Authorization': `JWT ${localStorage.getItem('access_token')}`
+        }
+      });
+      console.log(res)
+      return await res.json();
+};
+
+export const isGetKadaiDetail = async (id:number) =>{
+  console.log("id",id)
+  const url = "http://localhost:8000/myapp/kadai/list/" + id + "/detail/"
+    const res = await fetch(url, {
+        method: 'GET',
+        headers:{
+          'Content-Type': 'application/json',
+          'Authorization': `JWT ${localStorage.getItem('access_token')}`
+        }
+      });
+      console.log(res)
+      return await res;
+};
+// export const getUser = async () => {
+//   const res = await fetch(,)
+// }
+
 
 export const postKadai = async(data:Kadai) => {
   try{
-    const response = await fetch("'http://127.0.0.1:8000/myapp/test/",{
+    console.log(requests.kadai_create_url)
+    const userJson = localStorage.getItem("user");
+        if (!userJson) {
+            throw new Error("User not found in localStorage");
+        }
+    const user=JSON.parse(userJson);
+    console.log(requests.kadai_create_url)
+    const url = requests.kadai_create_url;
+    const response = await fetch(url,{
       method:"POST",
       headers:{
-        "Content-Type":"application/json"
+        "Content-Type":"application/json",
+        'Authorization': `JWT ${localStorage.getItem('access_token')}`,
       },
       body:JSON.stringify(data)
     });
@@ -28,4 +83,72 @@ export const postKadai = async(data:Kadai) => {
   }
  
 
+};
+
+export const postLogin = async(data:Login) =>{
+  console.log("データのなかみ",data)
+  try{
+    const response = await fetch(requests.login_url,{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(data)
+    });
+
+    console.log("responseの中身")
+    console.log(response)
+    if (!response.ok){
+      throw new Error("network response not ok")
+    }
+    const responseData = await response.json();
+    console.log(responseData
+    )
+    console.log(responseData.user)
+    
+    if (responseData.access) {
+            localStorage.setItem('access_token', responseData.access);
+            localStorage.setItem('user', JSON.stringify(responseData.user));
+        }
+
+
+    return responseData;
+
+  }catch (error){
+    console.error("ログイン情報が違うんじゃない？？",error)
+  }
+};
+
+
+export const postRegistar = async(data:Registar) =>{
+  console.log("データのなかみ",data)
+  try{
+    const response = await fetch(requests.register_url,{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(data)
+    });
+
+    console.log("responseの中身")
+    console.log(response)
+    if (!response.ok){
+      throw new Error("network response not ok")
+    }
+
+    const responseData = await response.json();
+    console.log(responseData)
+    // console.log(responseData.user)
+    
+    // if (responseData.access) {
+    //         localStorage.setItem('access_token', responseData.access);
+    //         localStorage.setItem('user', JSON.stringify(responseData.user));
+    //     }else{
+    //       console.log("なかったよ")
+    //     }
+    return responseData;
+  }catch (error){
+    console.error("ログイン情報が違うんじゃない？？",error)
+  }
 };

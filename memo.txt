@@ -17,3 +17,18 @@ users
         user_id: (int)
     }
 
+backendのurlの概要
+admin/                                       管理画面にアクセス
+myapp/kadai/list/                  課題を一覧にアクセス
+myapp/kadai/list/<int>/detail/          課題を詳細
+myapp/kadai/list/create/          課題の投稿
+myapp/kadai/user/list/             ログインしたユーザが作成した課題一覧を表示
+myapp/kadai/user/<int>/edit/       ログインしたユーザが作成した特定の課題を編集
+
+auth/register/                             user登録
+auth/login/                                login 
+auth/login/refresh                         tokenのリフレッシュ
+auth/logout/                               logout
+auth/detail/                               userの詳細を確認
+
+https://djoser.readthedocs.io/en/latest/base_endpoints.html

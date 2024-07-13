@@ -1,6 +1,8 @@
 # answer-view
-データベースの概要
-question_collection
+## データベースの概要  
+
+question_collection 
+
     {
         title: (str),
         question:(str),
@@ -8,14 +10,20 @@ question_collection
         author: (str),
         question_id :(int)
     }
+
+
+users_collection 
+
   
 users_collection
     {
         user_id: (int),
         name: (str),
         school: (str),
-        pass: (str),
+        password: (str),
     }
+
+## apiのやり取り
   
 
 
