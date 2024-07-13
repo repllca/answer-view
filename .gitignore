@@ -1,6 +1,6 @@
-./backend/django-sever/mysite/myapp/migrations/
-./backend/django-server/mysite/accounts/migrations/
-/backend/django-server/mysite/db.sqlite3
+./backend/django-server/mysite/myapp/migrations/
+./backend/django-server/mysite/accounts/
+./backend/django-server/mysite/db.sqlite3
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
