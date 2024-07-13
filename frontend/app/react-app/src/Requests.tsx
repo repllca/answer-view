@@ -1,4 +1,4 @@
-const root_url = "http://"+"localhost:8000/"
+const root_url = "https://answer-view.onrender.com"
 const login = "auth/login/"
 const register = "auth/register/"
 const user= "auth/detail/"
