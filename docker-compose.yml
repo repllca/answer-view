@@ -1,0 +1,36 @@
+version: "3.3"
+services:
+  react:
+    container_name: answer-view-react-server
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+    - type: bind
+      source: ./frontend/app
+      target: /usr/src/app
+    # - ./frontend/app:/usr/src/app
+    #"react-app"の部分がプロジェクト名になる
+    # command: sh -c "cd react-app && yarn start"
+    ports:
+      - 3000:3000
+    stdin_open: true #標準入力をコンテナと紐付ける
+
+  django:
+    container_name: answer-view-django-server
+    build:
+      context: ./backend    # Dockerfileがあるディレクトリまでの相対パス
+      dockerfile: Dockerfile   # Dockerfileのファイル名
+    
+
+    # 使用するポートの設定
+    ports:
+      - "8000:8000"
+    
+    # 対話的なセッションやコマンドラインの操作を許可する
+    tty: true
+
+    volumes:
+      # ローカルの作業ディレクトリと仮想環境の作業ディレクトリの対応づけ
+      - ./backend/django-server:/root/django-server
+  
